@@ -13,7 +13,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# --- 1. 資料庫 (第 12 課：居家生活 L1) ---
+# --- 1. 資料庫 (第 1 課：居家生活 L1) ---
 VOCAB_MAP = {
     "ira": "有/存在", "to": "了", "kako": "我", "a": "連接詞", 
     "minokay": "回家", "o": "噢", "kiso": "你", 
@@ -380,3 +380,4 @@ with tab4:
 
 st.markdown("---")
 st.caption("Powered by Code-CRF v6.5 | Architecture: Chief Architect")
+
