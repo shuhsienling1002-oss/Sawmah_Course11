@@ -308,7 +308,7 @@ header_html = """
 <body>
     <div class="container">
         <h1>Ira to kako a minokay</h1>
-        <div class="subtitle">第 12 課：我回來了 (居家篇)</div>
+        <div class="subtitle">第 1 課：我回來了 (居家篇)</div>
         <div class="footer">Code-CRF v6.5 | Theme: Warm Home (Cozy)</div>
     </div>
 </body>
@@ -380,4 +380,5 @@ with tab4:
 
 st.markdown("---")
 st.caption("Powered by Code-CRF v6.5 | Architecture: Chief Architect")
+
 
