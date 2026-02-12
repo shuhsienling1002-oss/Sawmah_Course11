@@ -8,80 +8,78 @@ from io import BytesIO
 
 # --- 0. 系統配置 ---
 st.set_page_config(
-    page_title="Ira to kako - 我回來了", 
+    page_title="Ira to kako a minokay - 我回來了", 
     page_icon="🏠", 
     layout="centered"
 )
 
-# --- 1. 資料庫 (居家生活 第 1 課) ---
+# --- 1. 資料庫 (第 12 課：居家生活 L1) ---
 VOCAB_MAP = {
-    "ira": "有/存在", "to": "了", "kako": "我", "minokay": "回家", 
-    "o": "噢(感嘆)", "kiso": "你", "pahanhan": "休息", "ho": "先/還", 
-    "awaay": "沒有/不在", "ko": "主格標記", "tao": "人/別人", 
-    "i": "在", "loma'": "家", "papotal": "外面", "ci": "人名標記", 
-    "ama": "爸爸"
+    "ira": "有/存在", "to": "了", "kako": "我", "a": "連接詞", 
+    "minokay": "回家", "o": "噢", "kiso": "你", 
+    "naira": "去哪裡了(過去)", "namaka": "從...來", "omah": "田地", 
+    "mali'ah": "餓", "hai": "是的"
 }
 
 VOCABULARY = [
     {"amis": "minokay", "zh": "回家", "emoji": "🏠", "root": "nokay", "root_zh": "歸"},
-    {"amis": "pahanhan", "zh": "休息/呼吸", "emoji": "🛋️", "root": "hanhan", "root_zh": "氣息"},
-    {"amis": "awaay", "zh": "沒有/不在", "emoji": "🈳", "root": "awa", "root_zh": "無"},
-    {"amis": "papotal", "zh": "外面/庭院", "emoji": "🌳", "root": "potal", "root_zh": "外"},
-    {"amis": "tao", "zh": "人/別人", "emoji": "👥", "root": "tao", "root_zh": "他人"},
+    {"amis": "naira", "zh": "去哪裡了(過去)", "emoji": "❓", "root": "ira", "root_zh": "那裡/有"},
+    {"amis": "namaka", "zh": "從...來", "emoji": "⬅️", "root": "maka", "root_zh": "經過/從"},
+    {"amis": "omah", "zh": "田地", "emoji": "🌾", "root": "omah", "root_zh": "田"},
+    {"amis": "mali'ah", "zh": "餓", "emoji": "😫", "root": "li'ah", "root_zh": "餓"},
     {"amis": "ira", "zh": "有/存在", "emoji": "✅", "root": "ira", "root_zh": "有"},
-    {"amis": "loma'", "zh": "家", "emoji": "🏡", "root": "loma'", "root_zh": "家"},
 ]
 
 SENTENCES = [
     {
-        "amis": "Ira to kako minokay.", 
+        "amis": "Ira to kako a minokay.", 
         "zh": "我回來了。", 
         "note": """
-        <br><b>Ira</b>：有/存在 (這裡指「出現」)。
-        <br><b>結構</b>：Ira + 主詞 + 動作。
-        <br><b>語感</b>：這是一種「宣告」。不只是說「我回家了」，而是強調「我的人已經出現在這裡了」。"""
+        <br><b>Ira... a...</b>：連動結構。
+        <br><b>a</b>：關鍵連接詞！連接「存在(Ira)」與「動作(minokay)」。
+        <br><b>語感</b>：比單說 <i>Minokay to kako</i> 更強調「人已經出現在這裡」的現場感。"""
     },
     {
-        "amis": "O, minokay to kiso!", 
-        "zh": "噢，你回來啦！", 
+        "amis": "O, minokay to kiso?", 
+        "zh": "噢，你回來啦？", 
         "note": """
-        <br><b>O</b>：感嘆詞，表示驚訝或確認。
+        <br><b>O</b>：感嘆詞。
         <br><b>to</b>：了 (狀態改變)。
-        <br><b>情境</b>：家人確認對方歸來的自然反應。"""
+        <br><b>情境</b>：家人見面時的自然招呼。"""
     },
     {
-        "amis": "Pahanhan ho.", 
-        "zh": "先休息一下吧。", 
+        "amis": "Naira kiso?", 
+        "zh": "你去哪裡了？(從哪裡來？)", 
         "note": """
-        <br><b>Pahanhan</b>：休息 (原意與 <i>hanhan</i> 呼吸有關，指喘口氣)。
-        <br><b>ho</b>：先/暫且 (祈使語氣)。
-        <br><b>省略</b>：省略了主詞 <i>kiso</i>，直接建議對方休息。"""
+        <br><b>Na-</b>：過去時間標記。
+        <br><b>ira</b>：那裡/有。
+        <br><b>比較</b>：
+        <br>❓ <i>Talacowa kiso?</i> (你要去哪？ - 未來)
+        <br>❓ <i>Naira kiso?</i> (你去哪了？ - 過去)"""
     },
     {
-        "amis": "Awaay ko tao i loma'?", 
-        "zh": "家裡沒人嗎？", 
+        "amis": "Namaka-omah kako.", 
+        "zh": "我去田裡回來。", 
         "note": """
-        <br><b>Awaay</b>：沒有/不在 (Ira 的相反詞)。
-        <br><b>tao</b>：別人/人 (這裡指家裡的其他人)。
-        <br><b>句型</b>：Awaay ko... (沒有...)。"""
+        <br><b>Namaka-</b>：從...來 (過去式)。
+        <br><b>omah</b>：田地。
+        <br><b>句型</b>：Namaka + [地點] + 主詞。"""
     },
     {
-        "amis": "Ira, i papotal ci Ama.", 
-        "zh": "有，爸爸在外面。", 
+        "amis": "Mali'ah to kiso?", 
+        "zh": "你肚子餓了嗎？", 
         "note": """
-        <br><b>papotal</b>：外面/庭院。
-        <br><b>Ci vs Ko</b>：
-        <br>🔸 <b>Ko</b>：用於普通名詞 (如 <i>ko tao</i>)。
-        <br>🔹 <b>Ci</b>：專用於人名或親屬稱謂 (如 <i>ci Ama</i>)。"""
+        <br><b>Mali'ah</b>：餓 (生理狀態)。
+        <br><b>ma-</b>：表示非自願的生理感覺 (如 <i>ma'icang</i> 渴、<i>maresa'</i> 累)。"""
     }
 ]
 
 STORY_DATA = [
-    {"amis": "Ira to kako minokay.", "zh": "我回來了。"},
-    {"amis": "O, minokay to kiso!", "zh": "噢，你回來啦！"},
-    {"amis": "Pahanhan ho.", "zh": "先休息一下吧。"},
-    {"amis": "Awaay ko tao i loma'?", "zh": "家裡沒人嗎？"},
-    {"amis": "Ira, i papotal ci Ama.", "zh": "有，爸爸在外面。"}
+    {"amis": "Ira to kako a minokay.", "zh": "我回來了。"},
+    {"amis": "O, minokay to kiso?", "zh": "噢，你回來啦？"},
+    {"amis": "Naira kiso?", "zh": "你去哪裡了？"},
+    {"amis": "Namaka-omah kako.", "zh": "我去田裡回來。"},
+    {"amis": "Mali'ah to kiso?", "zh": "你肚子餓了嗎？"}
 ]
 
 # --- 2. 視覺系統 (CSS 注入 - 溫馨暖橘主題) ---
@@ -213,7 +211,7 @@ def generate_quiz():
     # 4. 詞根偵探
     q4 = random.choice(VOCABULARY)
     other_roots = list(set([v['root'] for v in VOCABULARY if v['root'] != q4['root']]))
-    if len(other_roots) < 2: other_roots += ["nokay", "hanhan", "awa"]
+    if len(other_roots) < 2: other_roots += ["nokay", "maka", "li'ah"]
     q4_opts = [q4['root']] + random.sample(other_roots, 2)
     random.shuffle(q4_opts)
     questions.append({"type": "root", "tag": "🧬 詞根偵探", "text": f"單字 <span style='color:#E65100'>{q4['amis']}</span> 的詞根是？", "correct": q4['root'], "options": q4_opts, "note": f"詞根意思：{q4['root_zh']}"})
@@ -309,8 +307,8 @@ header_html = """
 </head>
 <body>
     <div class="container">
-        <h1>Ira to kako</h1>
-        <div class="subtitle">第 1 課：我回來了</div>
+        <h1>Ira to kako a minokay</h1>
+        <div class="subtitle">第 12 課：我回來了 (居家篇)</div>
         <div class="footer">Code-CRF v6.5 | Theme: Warm Home (Cozy)</div>
     </div>
 </body>
